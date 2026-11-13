@@ -95,40 +95,7 @@ Full-text articles were taken from the Open Access subset of Europe PMC [@citesA
 
 The tables are linked by the citing article's PMCID and, within an article, by the reference's identifier in the reference list (Figure \ref{fig:schema}).
 
-```mermaid
-erDiagram
-    ARTICLES ||--o{ REFERENCES : "lists"
-    ARTICLES ||--o{ MENTIONS : "contains"
-    REFERENCES ||--o{ MENTIONS : "is cited by"
-    ARTICLES {
-        string pmcid PK
-        string article_type
-        int n_refs
-        int n_mentions
-        string status
-    }
-    REFERENCES {
-        string pmcid PK, FK
-        string ref_id PK
-        int ref_pos
-        string doi
-        string pmid
-        string pmcid_ref
-        string title
-        int cited_rank_text
-    }
-    MENTIONS {
-        string pmcid PK, FK
-        int mention_idx PK
-        string ref_id FK
-        string sec_class
-        int sentence_idx
-        boolean in_table
-        boolean in_caption
-    }
-```
-
-Figure: Schema of the three tables written by `parse_jats.py` (main columns only). A reference is identified by `(pmcid, ref_id)`; a mention by `(pmcid, mention_idx)` and points to the reference it cites. \label{fig:schema}
+![Schema of the three tables written by `parse_jats.py` (main columns only). A reference is identified by (`pmcid`, `ref_id`) and a mention by (`pmcid`, `mention_idx`); each mention points to the reference it cites. \label{fig:schema}](./fig_schema.png)
 
 Citation ranges such as "[3–7]" are expanded into the individual references, and section headings are classified from their titles. DOIs are normalised (case, URL prefixes, trailing punctuation and file suffixes). **[TODO: Julian]** number of references and in-text mentions in the full corpus.
 
@@ -280,7 +247,7 @@ The topic corpus of 266,875 proteomics and metabolomics articles has publication
 - **In-group use.** 94.8% of uses are by other labs; 0.9% are by the tool's own authors and 4.3% by their institutions. Self-use falls from 3.7% in a tool's first two years to 0.5% after ten.
 - **Workflow change.** Of the 200 most common arrows in 2012–14, 15 are still among the top 200 in 2024–26. Some tools moved between workflow areas: Prodigal, CD-HIT and eggNOG from sequence analysis to metagenomics, and Fiji from proteomics to RNA-seq. Time-lapse videos of the directed graph are in [`directed-graph/patterns/figures/`](https://github.com/inab/BH2026-InSoLiTo/blob/BH2026/directed-graph/patterns/figures).
 
-![Adoption shapes of the most-used tools in proteomics and metabolomics papers, 2012–2026: each row is a tool's use per 1,000 articles scaled to its own peak, clustered by shape. \label{fig:adoption}](./fig_adoption_clustermap.png)
+![Adoption shapes of the most-used tools in proteomics and metabolomics papers, 2012–2026: each row is a tool's use per 1,000 articles scaled to its own peak (dark = peak year), grouped by shape. The 120 most-used tools are split over two columns. \label{fig:adoption}](./fig_adoption_clustermap.png)
 
 ```{=latex}
 }
