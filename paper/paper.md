@@ -152,6 +152,17 @@ How the directed co-citation and workflow interoperability edges were incorporat
 Responsible: Juancris
 
 
+# Discussion
+
+Co-citations and existing workflows are complementary. Co-citations suggest sequentially used tools in data analysis methods that have never been combined in a scientific workflow. Conversely, some highly used tools, such as FastQC, have never been published in the peer-reviewed scientific literature, and therefore do not have any citations in any of the available literature databases.
+
+The project revealed a number of tradeoffs between sensitivity and specificity, e.g. between capturing more co-citations between tools
+
+
+
+# Conclusions and future work
+
+
 
 Here are some general instructions for this Markdown:
 
